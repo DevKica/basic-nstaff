@@ -1,0 +1,5 @@
+export const AUTH = {
+    SET_USER: "SET_USER",
+    SET_ACTIVE_USER: "SET_ACTIVE_USER",
+    REMOVE_USER: "REMOVE_USER",
+};
