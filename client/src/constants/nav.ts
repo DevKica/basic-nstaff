@@ -15,4 +15,9 @@ export const authenticateNavPaths = [
     { text: "delete account", path: "/requireUser/deleteAccount" },
 ];
 
-export const activeNavPaths = [...authenticateNavPaths, { text: "active profile", path: "/requireActiveUser/profile" }, { text: "all users", path: "/requireActiveUser/allUsers" }];
+export const activeNavPaths = [
+    ...authenticateNavPaths,
+    { text: "active profile", path: "/requireActiveUser/profile" },
+    { text: "all users", path: "/requireActiveUser/allUsers" },
+    { text: "nstaff", path: "/requireActiveUser/nstaff/nav" },
+];

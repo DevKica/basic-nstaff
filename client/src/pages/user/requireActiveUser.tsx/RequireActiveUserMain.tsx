@@ -6,6 +6,7 @@ import { stateType } from "../../../redux/reducers/mainReducer";
 import ActiveProfilePage from "./ActiveProfilePage";
 import PublicProfilePage from "./PublicProfilePage";
 import AllUsersPage from "./AllUsersPage";
+import NstaffMainPage from "../../nstaff/NstaffMain";
 
 const RequireActiveUserPage = () => {
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ const RequireActiveUserPage = () => {
         <div>
             {loaded ? (
                 <Routes>
+                    <Route path="/nstaff/*" element={<NstaffMainPage />} />
                     <Route path="/publicProfile/:userId" element={<PublicProfilePage />} />
                     <Route path="/allUsers" element={<AllUsersPage />} />
                     <Route path="/profile" element={<ActiveProfilePage />} />

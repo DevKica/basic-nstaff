@@ -5,11 +5,11 @@ import { AUTH_USER_URL } from "./../../config/default";
 import { errorMessageType } from "./../../types/errorMessage";
 axios.defaults.withCredentials = true;
 
-const helperErrorMessge = (resMsg: string, msg: errorMessageType) => {
+export const helperErrorMessge = (resMsg: string, msg: errorMessageType) => {
     return resMsg === msg.message[0];
 };
 
-const checkBasicErrors = (resMsg: string) => {
+export const checkBasicErrors = (resMsg: string) => {
     if (helperErrorMessge(resMsg, SERVER_ERROR)) {
         window.location.href = "/errors/serverError";
         return null;
@@ -21,7 +21,7 @@ const checkBasicErrors = (resMsg: string) => {
     return true;
 };
 
-const checkForbiddenError = (resMsg: string) => {
+export const checkForbiddenError = (resMsg: string) => {
     if (helperErrorMessge(resMsg, FORBIDDEN)) {
         window.location.href = "/errors/forbidden";
         return null;
@@ -29,20 +29,21 @@ const checkForbiddenError = (resMsg: string) => {
     return true;
 };
 
-const networkError = () => {
+export const networkError = () => {
     window.location.href = "/errors/network";
     return null;
 };
-const basicErrors = (res: AxiosResponse) => {
+export const basicErrors = (res: AxiosResponse) => {
     const message = res.data.message[0];
     const flag = checkBasicErrors(message);
     if (!flag) return null;
     return res;
 };
-const basicAndForbiddenErrors = (res: AxiosResponse) => {
+export const basicAndForbiddenErrors = (res: AxiosResponse) => {
     const message = res.data.message[0];
-    let flag = checkBasicErrors(message);
-    flag = checkForbiddenError(message);
+    let flag = checkForbiddenError(message);
+    if (!flag) return null;
+    flag = checkBasicErrors(message);
     if (!flag) return null;
     return res;
 };

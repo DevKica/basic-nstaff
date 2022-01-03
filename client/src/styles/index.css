@@ -4,9 +4,12 @@ body {
     background-color: #222;
     color: white;
     margin: 2vh 2vw;
+    margin-bottom: 5vh;
     font-size: 18px;
-    height: 95vh;
-    width: 95vw;
+    min-height: 95vh;
+    min-width: 95vw;
+    height: 95%;
+    width: 95%;
 }
 
 a,

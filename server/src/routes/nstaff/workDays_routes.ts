@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { createWorkDayHandler, deleteWorkDayHandler, getAllWorkDaysHandler, updateWorkDayHandler } from "../../controllers/nstuff/workDay.controller";
+import { createWorkDayHandler, deleteWorkDayHandler, getAllWorkDaysHandler, updateWorkDayHandler } from "../../controllers/nstaff/workDay.controller";
 import { basicSchemaValidation } from "../../middlewares/basicValidation";
 import { requireActiveUser } from "../../middlewares/requireUser";
-import { workDaySchema } from "../../schemas/nstuff/workDaySchema";
+import { workDaySchema } from "../../schemas/nstaff/workDaySchema";
 
 const router = Router();
 

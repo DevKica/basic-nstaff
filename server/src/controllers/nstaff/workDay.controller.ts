@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import { SERVER_ERROR, SUCCESS, SUCCESS_DATA, WORK_DAY_EXISTS } from "../../helpers/errors/errorMessages";
 import { getSingleMonthlyRate } from "../../services/nstaff/monthlyRate.service";
 import { getSingleWorkDay, createWorkDay, getAllWorkDays, updateWorkDay, deleteSingleWorkDay } from "../../services/nstaff/workDay.service";
-import { BAD_REQUEST } from "./../../../../client/src/helpers/errors/errorMessages";
-import { MONTHLY_RATE__DOES_NOT_EXISTS } from "./../../helpers/errors/errorMessages";
+import { BAD_REQUEST } from "../../../../client/src/helpers/errors/errorMessages";
+import { MONTHLY_RATE__DOES_NOT_EXISTS } from "../../helpers/errors/errorMessages";
 
 export async function createWorkDayHandler(req: Request, res: Response) {
     try {
@@ -11,7 +11,7 @@ export async function createWorkDayHandler(req: Request, res: Response) {
 
         const checkIfMontlyRateExists = await getSingleMonthlyRate({ userId, month: req.body.date.slice(0, 7) });
 
-        if (!checkIfMontlyRateExists) MONTHLY_RATE__DOES_NOT_EXISTS;
+        if (!checkIfMontlyRateExists) return res.send(MONTHLY_RATE__DOES_NOT_EXISTS);
 
         const checkIfExists = await getSingleWorkDay({ userId, month: req.body.date.slice(0, 7), day: req.body.date.slice(-2) });
         if (checkIfExists) return res.send(WORK_DAY_EXISTS);
