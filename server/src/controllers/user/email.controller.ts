@@ -2,10 +2,10 @@ import config from "config";
 import { Request, Response } from "express";
 import { verifyJWT } from "../../utils/jwtConfig";
 import sendEmailHandler from "../../utils/emailConfig";
-import { updateManySessions } from "../../services/session.service";
-import { deleteResetPassword } from "../../services/resetPassword.service";
-import { checkIfEmailExists, getUser, updateUser, validateUserPasswordById } from "../../services/user.service";
-import { createEmailConfirmation, deleteEmailConfirmation, findEmailConfirmation } from "../../services/emailConfirmation.service";
+import { updateManySessions } from "../../services/user/session.service";
+import { deleteResetPassword } from "../../services/user/resetPassword.service";
+import { checkIfEmailExists, getUser, updateUser, validateUserPasswordById } from "../../services/user/user.service";
+import { createEmailConfirmation, deleteEmailConfirmation, findEmailConfirmation } from "../../services/user/emailConfirmation.service";
 import { UNACTIVE_LINK, EMAIL_NOT_FOUND, EXPIRED_LINK, FORBIDDEN, INPUT_EMAIL_EXIST, INVALID_PASSWORD, SERVER_ERROR, SUCCESS } from "../../helpers/errors/errorMessages";
 import COOKIE_TYPE from "../../helpers/cookies/type";
 

@@ -2,9 +2,9 @@ import config from "config";
 import { Request, Response } from "express";
 import { verifyJWT } from "../../utils/jwtConfig";
 import sendEmailHandler from "../../utils/emailConfig";
-import { updateManySessions } from "../../services/session.service";
-import { getUser, updateUser, validateUserPasswordById } from "../../services/user.service";
-import { createResetPassword, deleteResetPassword, findResetPassword } from "../../services/resetPassword.service";
+import { updateManySessions } from "../../services/user/session.service";
+import { getUser, updateUser, validateUserPasswordById } from "../../services/user/user.service";
+import { createResetPassword, deleteResetPassword, findResetPassword } from "../../services/user/resetPassword.service";
 import { INVALID_OLD_PASSWORD, SUCCESS, SERVER_ERROR, EMAIL_NOT_FOUND, EXPIRED_LINK, FORBIDDEN, UNACTIVE_LINK } from "../../helpers/errors/errorMessages";
 
 const EMAIL_SECRET_TOKEN = config.get<string>("EMAIL_SECRET_TOKEN");

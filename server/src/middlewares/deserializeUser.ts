@@ -3,7 +3,7 @@ import config from "config";
 import COOKIE_TYPE from "../helpers/cookies/type";
 import { NextFunction, Request, Response } from "express";
 import { signJWT, verifyJWT } from "../utils/jwtConfig";
-import { findSingleSession } from "../services/session.service";
+import { findSingleSession } from "../services/user/session.service";
 
 const MAIN_SECRET_TOKEN = config.get<string>("MAIN_SECRET_TOKEN");
 const ACCESS_TOKEN_TTL = config.get<string>("ACCESS_TOKEN_TTL");

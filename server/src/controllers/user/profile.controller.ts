@@ -5,7 +5,7 @@ import { promisify } from "util";
 import { unlink, existsSync } from "fs";
 import { Request, Response } from "express";
 import { UploadedFile } from "express-fileupload";
-import { getActiveUser, getAllActiveUsers, getUser, updateUser } from "../../services/user.service";
+import { getActiveUser, getAllActiveUsers, getUser, updateUser } from "../../services/user/user.service";
 import { BAD_REQUEST, INVALID_FILE_FORMAT, NOT_FOUND, PHOTO_REQUIRED, SERVER_ERROR, SUCCESS, SUCCESS_DATA } from "../../helpers/errors/errorMessages";
 import { defaultUserPhotoName, userPhotoSizes, usersPhotosDirName } from "../../constants/profile";
 import generateRandomString from "../../utils/generateRandomString";

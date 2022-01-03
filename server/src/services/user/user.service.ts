@@ -1,6 +1,6 @@
 import argon2 from "argon2";
 import { omit } from "lodash";
-import UserModel, { userCreateInput, userFilter, userUpdate } from "../models/user.model";
+import UserModel, { userCreateInput, userFilter, userUpdate } from "../../models/user.model";
 
 export async function createUser(input: userCreateInput) {
     try {

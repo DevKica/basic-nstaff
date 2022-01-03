@@ -8,8 +8,6 @@ export const NOT_FOUND = messageFormat("Not found", 404);
 
 export const FORBIDDEN = messageFormat("Forbidden", 403);
 
-export const CONFLICT = messageFormat("Conflict", 409);
-
 export const SUCCESS = messageFormat("Success", 200);
 
 export const INVALID_LOGIN_CREDENTIALS_ERROR = messageFormat("Invalid email or password", 401);
@@ -41,3 +39,9 @@ export const INVALID_FILE_FORMAT = messageFormat("Invalid file format", 400);
 export const GOOGLE_REGISTER = messageFormat("If you want to register, you have to create password", 400);
 
 export const TOO_MANY_REQUEST = messageFormat("Too many request, try again later", 400);
+
+export const MONTHLY_RATE__DOES_NOT_EXISTS = messageFormat("You cant work day without monthly rate", 400);
+
+export const MONTHLY_RATE_EXISTS = messageFormat("You cant create monthly rate that already exists", 400);
+
+export const WORK_DAY_EXISTS = messageFormat("You cant create work day that already exists", 400);

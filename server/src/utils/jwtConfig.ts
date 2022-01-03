@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { sessionDocument } from "../models/session.model";
-import { signSessionFormat } from "../services/session.service";
+import { signSessionFormat } from "../services/user/session.service";
 import { ObjectId } from "mongoose";
 
 export interface decodedFormat extends signSessionFormat {

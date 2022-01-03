@@ -3,7 +3,7 @@ import request from "supertest";
 import app from "./../../server";
 import dbConnect from "./../../utils/dbConnect";
 import config from "config";
-import { createUser } from "../../services/user.service";
+import { createUser } from "../../services/user/user.service";
 import { activeUser } from "../data/user.data";
 
 const TEST_DB = config.get<string>("TEST_DB");

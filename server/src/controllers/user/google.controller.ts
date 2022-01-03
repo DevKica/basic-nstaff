@@ -2,9 +2,9 @@ import config from "config";
 import { omit } from "lodash";
 import { Request, Response } from "express";
 import COOKIE_TYPE from "../../helpers/cookies/type";
-import { deleteEmailConfirmation } from "../../services/emailConfirmation.service";
-import { signNewSession, updateManySessions } from "../../services/session.service";
-import { checkIfEmailExists, createUser, getUser, updateUser } from "../../services/user.service";
+import { deleteEmailConfirmation } from "../../services/user/emailConfirmation.service";
+import { signNewSession, updateManySessions } from "../../services/user/session.service";
+import { checkIfEmailExists, createUser, getUser, updateUser } from "../../services/user/user.service";
 import { FORBIDDEN, GOOGLE_REGISTER, INPUT_EMAIL_EXIST, SERVER_ERROR } from "../../helpers/errors/errorMessages";
 import { SUCCESS_USER_FORMAT } from "../../helpers/errors/returnUserData";
 

@@ -1,7 +1,7 @@
 import config from "config";
-import { signJWT } from "../utils/jwtConfig";
-import { userDocument } from "../models/user.model";
-import SessionModel, { sessionFilter, sessionInput, sessionUpdate } from "../models/session.model";
+import { signJWT } from "../../utils/jwtConfig";
+import { userDocument } from "../../models/user.model";
+import SessionModel, { sessionFilter, sessionInput, sessionUpdate } from "../../models/session.model";
 export interface signSessionFormat {
     _id: userDocument["_id"];
     active: boolean;
