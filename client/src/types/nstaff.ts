@@ -10,13 +10,15 @@ export interface singleMonthlyRate extends monthlyRateBody {
     _id: string;
 }
 
-export interface workDayBody {
-    date: string;
+export interface calculateEarningsType {
     startOfWork: string;
     endOfWork: string;
     tipCash: number;
     tipCard: number;
     receipts: number;
+}
+export interface workDayBody extends calculateEarningsType {
+    date: string;
 }
 
 export interface singleDayProps extends workDayBody {

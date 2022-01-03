@@ -11,7 +11,7 @@ export async function createWorkDay(input: workDayInput) {
 
 export async function getSingleWorkDay(query: workDayFilter) {
     try {
-        const workDay = await workDayModel.findOne(query);
+        const workDay = await workDayModel.findOne(query).lean();
         return workDay;
     } catch (e) {
         return null;

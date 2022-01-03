@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { PROFILE_USER_URL } from "../../config/default";
-import { BAD_REQUEST, FORBIDDEN, SERVER_ERROR } from "./../../helpers/errors/errorMessages";
+import { BAD_REQUEST, FORBIDDEN, NOT_FOUND, SERVER_ERROR } from "./../../helpers/errors/errorMessages";
 import { AUTH_USER_URL } from "./../../config/default";
 import { errorMessageType } from "./../../types/errorMessage";
 axios.defaults.withCredentials = true;
@@ -16,6 +16,10 @@ export const checkBasicErrors = (resMsg: string) => {
     }
     if (helperErrorMessge(resMsg, BAD_REQUEST)) {
         window.location.href = "/errors/badRequest";
+        return null;
+    }
+    if (helperErrorMessge(resMsg, NOT_FOUND)) {
+        window.location.href = "/notFound";
         return null;
     }
     return true;

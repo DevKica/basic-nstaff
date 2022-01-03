@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getSingleMonthlyRate } from "../../api/nstaff/monthlyRatesApi";
 import { getAllWorkDays } from "../../api/nstaff/workDaysApi";
-import SingleDay from "../../components/nstaff/SingleDay";
-import { cardTipTax, taxToKitchen } from "../../constants/taxes";
-import { singleDayProps } from "../../types/nstaff";
-import { hourDiff } from "./../../helpers/hourDiff";
+import SingleWorkDay from "../../components/nstaff/SingleWorkDay";
+import { calculateEarningsType, singleDayProps } from "../../types/nstaff";
+import { calculateDayEarnings } from "./../../helpers/nstaff";
 
 const MonthlyDetailsPage = () => {
     const { month } = useParams();
@@ -23,9 +22,8 @@ const MonthlyDetailsPage = () => {
             if (!res) return;
             setDays(res.data.message);
 
-            res.data.message.forEach((e: singleDayProps) => {
-                console.log(e);
-                setEarnings((prevState) => prevState + (res1.data.message.rate * hourDiff(e.startOfWork, e.endOfWork) + e.tipCard * cardTipTax + e.tipCash - e.receipts * taxToKitchen));
+            res.data.message.forEach((e: calculateEarningsType) => {
+                setEarnings((prevState) => prevState + calculateDayEarnings(e, res1.data.message.rate));
             });
         })();
     }, [month]);
@@ -41,7 +39,7 @@ const MonthlyDetailsPage = () => {
             <div>
                 {days.length
                     ? days.map((e) => {
-                          return <SingleDay key={e._id} workDay={e} rate={rate} />;
+                          return <SingleWorkDay key={e._id} workDay={e} rate={rate} />;
                       })
                     : "no days"}
             </div>

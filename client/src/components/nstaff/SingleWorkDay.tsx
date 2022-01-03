@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
 import { cardTipTax, taxToKitchen } from "../../constants/taxes";
 import { hourDiff } from "../../helpers/hourDiff";
+import { calculateDayEarnings } from "../../helpers/nstaff";
 
-const SingleDay = (props: any) => {
-    const { day, startOfWork, endOfWork, tipCard, tipCash, receipts } = props.workDay;
+const SingleWorkDay = (props: any) => {
+    const { _id, day, startOfWork, endOfWork, tipCard, tipCash, receipts } = props.workDay;
     const rate = props.rate;
 
     const hours = hourDiff(startOfWork, endOfWork);
@@ -22,11 +24,14 @@ const SingleDay = (props: any) => {
                 <div>
                     Receipts: {receipts} tax to kitchen {receipts * taxToKitchen}
                 </div>
-                <div>total: {rate * hours + tipCardTax + tipCash - receipts * taxToKitchen}</div>
+                <div>total: {calculateDayEarnings(props.workDay, rate)}</div>
             </div>
-            <button>details</button>
+            <Link to={`/requireActiveUser/nstaff/singleWorkDay/${_id}`}>
+                <button>details</button>
+            </Link>{" "}
+            <button>delete</button>
         </div>
     );
 };
 
-export default SingleDay;
+export default SingleWorkDay;
