@@ -1,16 +1,16 @@
-import MontlyRateModel, { montlyRateInput, monthlyRateFilter } from "../../models/nstaff/monthlyRate";
+import MontlyRateModel, { montlyRateInput, monthlyRateFilter, monthlyRateUpdate } from "../../models/nstaff/monthlyRate.model";
 
 export async function createMontlyRate(input: montlyRateInput) {
     try {
-        const monthlyRate = MontlyRateModel.create(input);
+        const monthlyRate = await MontlyRateModel.create(input);
         return monthlyRate;
     } catch (e: unknown) {
         return null;
     }
 }
-export async function updateMonthlyRate(query: monthlyRateFilter, update: monthlyRateFilter) {
+export async function updateMonthlyRate(query: monthlyRateFilter, update: monthlyRateUpdate) {
     try {
-        const newMonthlyRate = MontlyRateModel.findOneAndUpdate(query, update, { new: true }).lean();
+        const newMonthlyRate = await MontlyRateModel.findOneAndUpdate(query, update, { new: true }).lean();
         return newMonthlyRate;
     } catch (e: unknown) {
         return null;
@@ -19,7 +19,7 @@ export async function updateMonthlyRate(query: monthlyRateFilter, update: monthl
 
 export async function getAllMonthlyRates(query: monthlyRateFilter) {
     try {
-        const monthlyRates = MontlyRateModel.find(query, "month rate");
+        const monthlyRates = await MontlyRateModel.find(query);
         return monthlyRates;
     } catch (e: unknown) {
         return null;
@@ -27,7 +27,7 @@ export async function getAllMonthlyRates(query: monthlyRateFilter) {
 }
 export async function getSingleMonthlyRate(query: monthlyRateFilter) {
     try {
-        const monthlyRate = MontlyRateModel.findOne(query);
+        const monthlyRate = await MontlyRateModel.findOne(query);
         return monthlyRate;
     } catch (e: unknown) {
         return null;

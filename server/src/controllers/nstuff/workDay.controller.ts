@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { SERVER_ERROR, SUCCESS, SUCCESS_DATA, WORK_DAY_EXISTS } from "../../helpers/errors/errorMessages";
 import { getSingleMonthlyRate } from "../../services/nstaff/monthlyRate.service";
-import { getSingleWorkDay, createWorkDay, getAllWorkDays } from "../../services/nstaff/workDay.service";
+import { getSingleWorkDay, createWorkDay, getAllWorkDays, updateWorkDay, deleteSingleWorkDay } from "../../services/nstaff/workDay.service";
 import { BAD_REQUEST } from "./../../../../client/src/helpers/errors/errorMessages";
 import { MONTHLY_RATE__DOES_NOT_EXISTS } from "./../../helpers/errors/errorMessages";
 
@@ -24,6 +24,7 @@ export async function createWorkDayHandler(req: Request, res: Response) {
         return res.send(SERVER_ERROR);
     }
 }
+
 export async function getAllWorkDaysHandler(req: Request, res: Response) {
     try {
         const userId = res.locals.user._id;
@@ -37,16 +38,31 @@ export async function getAllWorkDaysHandler(req: Request, res: Response) {
         return res.send(SERVER_ERROR);
     }
 }
-// export async function updateWorkDayHandler(req: Request, res: Response) {
-//     try {
-//         const userId = res.locals.user._id;
-//         const { workDayId } = req.params;
 
-//         const updatedWorkDay = await updateWorkDayHandler({ userId, _id: workDayId }, req.body);
-//         if (!updatedWorkDay) return res.send(BAD_REQUEST);
+export async function updateWorkDayHandler(req: Request, res: Response) {
+    try {
+        const userId = res.locals.user._id;
+        const { workDayId } = req.params;
 
-//         return res.send(SUCCESS_DATA(updatedWorkDay));
-//     } catch (e) {
-//         return res.send(SERVER_ERROR);
-//     }
-// }
+        const updatedWorkDay = await updateWorkDay({ userId, _id: workDayId }, req.body);
+        if (!updatedWorkDay) return res.send(BAD_REQUEST);
+
+        return res.send(SUCCESS_DATA(updatedWorkDay));
+    } catch (e) {
+        return res.send(SERVER_ERROR);
+    }
+}
+
+export async function deleteWorkDayHandler(req: Request, res: Response) {
+    try {
+        const userId = res.locals.user._id;
+        const { workDayId } = req.params;
+
+        const deleteStatus = await deleteSingleWorkDay({ userId, _id: workDayId });
+        if (!deleteStatus) throw Error;
+
+        return res.send(SUCCESS);
+    } catch (e) {
+        return res.send(SERVER_ERROR);
+    }
+}
