@@ -5,6 +5,7 @@ import { singleMonthlyRate } from "../../types/nstaff";
 
 const MonthlyRatesPage = () => {
     const [monthlyRates, setMonthlyRates] = useState<singleMonthlyRate[] | []>([]);
+
     useEffect(() => {
         (async () => {
             const res = await getAllMonthlyRates();

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { deleteWorkDay } from "../../api/nstaff/workDaysApi";
 import { cardTipTax, taxToKitchen } from "../../constants/taxes";
 import { hourDiff } from "../../helpers/hourDiff";
 import { calculateDayEarnings } from "../../helpers/nstaff";
@@ -9,6 +10,12 @@ const SingleWorkDay = (props: any) => {
 
     const hours = hourDiff(startOfWork, endOfWork);
     const tipCardTax = Math.round(tipCard * cardTipTax * 100) / 100;
+
+    const handleDeleteWorkDay = async () => {
+        const res = await deleteWorkDay(_id);
+        if (!res) return;
+        window.location.reload();
+    };
 
     return (
         <div>
@@ -29,7 +36,7 @@ const SingleWorkDay = (props: any) => {
             <Link to={`/requireActiveUser/nstaff/singleWorkDay/${_id}`}>
                 <button>details</button>
             </Link>{" "}
-            <button>delete</button>
+            <button onClick={handleDeleteWorkDay}>delete</button>
         </div>
     );
 };
