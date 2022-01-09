@@ -26,7 +26,7 @@ export const EMAIL_CONFIRMATION_EXPIRED = messageFormat("Confirmation of e-mail 
 
 export const EXPIRED_LINK = messageFormat("This link has expired", 400);
 
-export const EMAIL_NOT_FOUND = messageFormat("Email not found", 400);
+export const EMAIL_NOT_FOUND = messageFormat("Email not found, try again", 400);
 
 export const UNACTIVE_LINK = messageFormat("This link isnt active more", 400);
 

@@ -1,3 +1,4 @@
+import fs from "fs";
 import path from "path";
 import sharp from "sharp";
 import { omit } from "lodash";
@@ -112,9 +113,9 @@ export async function changeUserPhotoHandler(req: Request, res: Response) {
         if (oldUser.profilePhotoPath !== defaultUserPhotoName) {
             for (const size in userPhotoSizes) {
                 const deletePath = path.join(usersPhotosDirName, `${size}.${oldUser.profilePhotoPath}`);
-                unlink(deletePath, (err) => {
-                    if (err) throw Error;
-                });
+                if (fs.existsSync(deletePath)) {
+                    unlink(deletePath, () => {});
+                }
             }
         }
 

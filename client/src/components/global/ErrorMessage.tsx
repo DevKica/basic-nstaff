@@ -1,4 +1,4 @@
-const ResMessages = (props: { messages: [string] | [] }) => {
+const ResMessages = (props: { messages: string[] | [] }) => {
     return (
         <div>
             {props.messages.length

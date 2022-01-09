@@ -1,4 +1,5 @@
 import MontlyRateModel, { montlyRateInput, monthlyRateFilter, monthlyRateUpdate } from "../../models/nstaff/monthlyRate.model";
+import { getAllWorkDays } from "./workDay.service";
 
 export async function createMontlyRate(input: montlyRateInput) {
     try {
@@ -19,8 +20,14 @@ export async function updateMonthlyRate(query: monthlyRateFilter, update: monthl
 
 export async function getAllMonthlyRates(query: monthlyRateFilter) {
     try {
-        const monthlyRates = await MontlyRateModel.find(query);
-        return monthlyRates;
+        const monthlyRates = await MontlyRateModel.find(query).sort({ month: -1 }).lean();
+        const withWorkdays = await Promise.all(
+            monthlyRates.map(async (item) => {
+                const workDays = await getAllWorkDays({ ...query, month: item.month });
+                return { ...item, workDays };
+            })
+        );
+        return withWorkdays;
     } catch (e: unknown) {
         return null;
     }

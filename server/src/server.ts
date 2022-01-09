@@ -24,7 +24,7 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-app.use(limitter({ windowMs: 5000, max: 20, handler: tooManyRequestHandler }));
+app.use(limitter({ windowMs: 5000, max: 50, handler: tooManyRequestHandler }));
 
 app.use(fileUpload());
 
